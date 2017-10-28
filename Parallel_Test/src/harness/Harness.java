@@ -383,6 +383,7 @@ public class Harness extends ExtentTestNGReportBuilder {
 	public synchronized String takesnapshot() {
 		String snapshotpath = "ScreenShots//" + System.currentTimeMillis() + ".png";
 		File scrFile = null;
+		//to check the driver
 		try {
 			if (getmobDriver() != null) {
 				scrFile = ((TakesScreenshot) getmobDriver()).getScreenshotAs(OutputType.FILE);
