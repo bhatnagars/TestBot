@@ -1,0 +1,33 @@
+{
+	"Home": 
+	{
+		"Home.Myaccount": "xpath;//*[@class='navbar-collapse collapse']//a[contains(text(),'My Account')]",
+		"Home.Login": "xpath;//*[@class='navbar-collapse collapse']//a[contains(text(),'Login')]"
+	},
+
+	"Login": 
+	{
+		"Login.UserName": "xpath;//input[@name='username']",
+		"Login.Password": "xpath;//input[@name='password']",
+		"Login.LoginBtn": "xpath;//button[contains(text(),'Login')]"
+	},
+
+	"MyAccnt": 
+	{
+		"MyAccnt.Name": "xpath;//h3[contains(text(),'??')]"
+	},
+
+	"Menu": 
+	{
+		"Menu.List": "id;in.amazon.mShop.android.shopping:id/action_bar_burger_icon",
+		"Menu.Home": "xpath;//android.widget.TextView[@text='Home']",
+		"Menu.ShopByCategory": "xpath;//android.widget.TextView[@text='Shop by Category']"
+	},
+
+	"ShopByCategory": 
+	{
+		"ShopByCategory.MobnComp": "id;Mobiles, Computers",
+		"ShopByCategory.Mobiles": "xpath;//android.view.View[@content-desc='Mobiles ']",
+		"ShopByCategory.MobPhone": "id;Mobile Phones"
+	}
+}
