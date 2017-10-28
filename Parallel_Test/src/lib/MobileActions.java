@@ -13,7 +13,6 @@ public class MobileActions extends ExtentTestNGReportBuilder {
 	
 	private AndroidDriver<MobileElement> mobdriver;
 	private static actions lib;
-	private static int timeout=5;
 	
 	public MobileActions(String param){
 		
@@ -28,7 +27,7 @@ public class MobileActions extends ExtentTestNGReportBuilder {
 	
 	public void Tap(String strlocator) {
 		try {
-			WaitforElementPresent(strlocator);
+			WaitforElementPresent(strlocator,5);
 			MobileElement a = mobdriver.findElement(lib.Getlocator(strlocator));
 			a.tap(1, 1);
 			pass("Clicked on element " + strlocator);
@@ -50,19 +49,19 @@ public class MobileActions extends ExtentTestNGReportBuilder {
 	 * @param Ele_Name
 	 * @param value
 	 */
-	public boolean WaitforElementPresent(String Ele_Name) {
+	public boolean WaitforElementPresent(String Ele_Name,int time) {
 	boolean blnFlg = false;
+	do {
 	try {
-		  if(timeout==1) {
-			  return blnFlg;
-		  }
 			WebDriverWait wait = new WebDriverWait(mobdriver,5);
 			wait.until(ExpectedConditions.visibilityOf(mobdriver.findElement(lib.Getlocator(Ele_Name))));
 			blnFlg = true;
+			break;
 		} catch (Exception e) {
-			timeout=timeout-1;
-			WaitforElementPresent(Ele_Name);
+			time=time-1;
+			System.out.println(time);
 		}
+	}while(time>=1);
 		return blnFlg;
 
 	}
