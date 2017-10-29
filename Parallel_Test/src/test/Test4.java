@@ -23,7 +23,6 @@ public class Test4 extends ExtentTestNGReportBuilder {
 @Test	
 public 	void test4() {
 	try {
-		//to launch app
 		driver.launchApp();
 		actions.Tap("Menu.List");
 	    actions.Tap("Menu.ShopByCategory");
