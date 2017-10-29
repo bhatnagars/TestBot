@@ -28,6 +28,7 @@ public class Test3 extends ExtentTestNGReportBuilder {
 @Test
   public void gtest3() {
 	  try {
+		  //test
 			driver.get("https://linkedin.com");
 			driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
 			String title = driver.getTitle();
