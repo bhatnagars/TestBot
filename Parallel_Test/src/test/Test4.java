@@ -9,7 +9,7 @@ import lib.MobileActions;
 
 public class Test4 extends ExtentTestNGReportBuilder {
 
-		private static AndroidDriver<?> driver;
+		private  AndroidDriver<?> driver;
 		private static MobileActions actions;
 
 		@BeforeTest

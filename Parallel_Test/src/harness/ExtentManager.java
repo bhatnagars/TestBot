@@ -11,20 +11,20 @@ public class ExtentManager {
     
     public static ExtentReports getInstance() {
     	if (Report == null)
-    		createInstance("Report.html");
+    		createInstance("Report");
     	
         return Report;
     }
     
     public static ExtentReports createInstance(String fileName) {
-        ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(fileName);
+        ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(fileName+".html");
         htmlReporter.config().setTestViewChartLocation(ChartLocation.BOTTOM);
         htmlReporter.config().setChartVisibilityOnOpen(true);
         htmlReporter.config().setTheme(Theme.STANDARD);
-        htmlReporter.config().setDocumentTitle(fileName);
+        htmlReporter.config().setDocumentTitle("Automation Report");
         htmlReporter.config().setEncoding("utf-8");
-        htmlReporter.config().setReportName(fileName);
-        
+        htmlReporter.config().setReportName("Regression Suite");
+//        htmlReporter.loadXMLConfig("//Users//NIMIT//Documents//workspace//extentreports-java-3.0.7//extent-config.xml");
         Report = new ExtentReports();
         Report.attachReporter(htmlReporter);
         

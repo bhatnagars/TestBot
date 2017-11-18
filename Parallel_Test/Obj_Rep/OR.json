@@ -29,5 +29,17 @@
 		"ShopByCategory.MobnComp": "id;Mobiles, Computers",
 		"ShopByCategory.Mobiles": "xpath;//android.view.View[@content-desc='Mobiles ']",
 		"ShopByCategory.MobPhone": "id;Mobile Phones"
+	},
+	"LinkedIn":
+	{
+	"LinkedIn.Submitbutton":"id;registration-submit",
+	"LinkedIn.ErrMsg":"xpath;//strong[contains(text(),'Please correct the marked fields below.')]",
+	"LinkedIn.Submitbtn":"id;login-submit",
+	"LinkedIn.Username":"id;login-email",
+	"LinkedIn.regUsrName":"id;reg-email",
+	"LinkedIn.regPassword":"id;reg-password",
+	"LinkedIn.Password":"id;login-password",
+	"LinkedIn.Err":"className;alert-content"
 	}
+	
 }

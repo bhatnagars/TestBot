@@ -34,9 +34,9 @@ public class ExtentTestNGReportBuilder  {
 
 	@BeforeSuite
 	public void beforeSuite() {
-		extent = ExtentManager.createInstance("Report.html");
-		ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter("Report.html");
-		extent.attachReporter(htmlReporter);
+		extent = ExtentManager.createInstance("Report");
+//		ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter("Report");
+//		extent.attachReporter(htmlReporter);
 		harness = new Harness();
 	}
 	

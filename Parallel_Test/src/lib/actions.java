@@ -92,11 +92,14 @@ public class actions extends ExtentTestNGReportBuilder{
 		   String locatortype= locator.split(";")[0].trim();
 		    locator = locator.split(";")[1].trim();
 			switch (locatortype.toLowerCase()) {
-			   case "xpath" :
+			case "xpath" :
 				   by= By.xpath(locator);
 				   break;
 			case "id" :
 				  by= By.id(locator);
+				  break;
+			case "className" :
+				  by= By.className(locator);
 				  break;
 				
 			}

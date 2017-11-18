@@ -2,6 +2,7 @@ package lib;
 
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import harness.ExtentTestNGReportBuilder;
@@ -15,7 +16,6 @@ public class MobileActions extends ExtentTestNGReportBuilder {
 	private static actions lib;
 	
 	public MobileActions(String param){
-		
 		lib = new actions(param);
 		}
 	
@@ -35,6 +35,7 @@ public class MobileActions extends ExtentTestNGReportBuilder {
 	
 				fail("Not clicked on element " + strlocator + " as " + e.getMessage());
 		}
+		
 	}
 	
 
@@ -42,28 +43,39 @@ public class MobileActions extends ExtentTestNGReportBuilder {
 		mobdriver.manage().timeouts().implicitlyWait(sec, TimeUnit.SECONDS);
 	}
 	
-	
+	public void mobclick(String elelocator) {
+		try {
+		MobileElement ele= mobdriver.findElement(lib.Getlocator(elelocator));
+		ele.click();
+		pass("Clicked on element "+elelocator);
+		}catch(Exception err) {
+			fail(err.getMessage());
+		}
+		
+	}
 	
 	/**
 	 * 
 	 * @param Ele_Name
 	 * @param value
+	 * @throws InterruptedException 
 	 */
-	public boolean WaitforElementPresent(String Ele_Name,int time) {
+	public boolean WaitforElementPresent(String Ele_Name,int time){
 	boolean blnFlg = false;
 	do {
 	try {
-			WebDriverWait wait = new WebDriverWait(mobdriver,5);
-			wait.until(ExpectedConditions.visibilityOf(mobdriver.findElement(lib.Getlocator(Ele_Name))));
+			WebDriverWait wait = new WebDriverWait(mobdriver,time);
+			wait.until(ExpectedConditions.visibilityOfElementLocated((lib.Getlocator(Ele_Name))));
 			blnFlg = true;
 			break;
 		} catch (Exception e) {
 			time=time-1;
-			System.out.println(time);
-		}
-	}while(time>=1);
-		return blnFlg;
 
+		}
+	}while(time>1);
+	 System.out.println(blnFlg);
+		return blnFlg;
+     
 	}
 	
 	public void waitForActivity(int wait) throws InterruptedException
@@ -94,5 +106,56 @@ public class MobileActions extends ExtentTestNGReportBuilder {
 	}
 	return flgbln;
 	}
+	
+	public boolean IsTextPresent(String strelement,String text) {
+		boolean flgbln=false;
+	try {
+		WaitforElementPresent(strelement, 5);
+		String eletext = mobdriver.findElement(lib.Getlocator(strelement)).getText().trim();
+		if(eletext.equalsIgnoreCase(text)) {
+			pass(eletext+" is displayed");
+			flgbln=true;
+		}else {
+			fail(text+" is not displayed");
+		}
+	}catch(Exception err) {
+		System.out.println(err.getMessage());
+		fail(strelement+err.getMessage());
+	}
+	return flgbln;
+	}
 
+
+	public String testdata(String ErrMsg) {
+		return lib.GettestData(ErrMsg);
+	}
+	
+	public boolean Launchapp(String URL) {
+		boolean result = false;
+		mobdriver.get("https://linkedin.com");
+		if(mobdriver.getTitle().contains("Linkedin")) {
+			System.out.println("m here");
+			pass("Application Luanched");
+			result=true;
+		}else {
+			return result;
+		}
+		return result;
+	}
+	
+	
+	public void entervalue(String Ele_Name, String value) {
+		WebElement elem_Username = null;
+		try {
+			if (WaitforElementPresent(Ele_Name,5)) {
+				elem_Username = mobdriver.findElement(lib.Getlocator(Ele_Name));
+				elem_Username.sendKeys(value);
+				pass("Set the value '" + value + " ' on Eelement '" + Ele_Name + " ' successfully");
+			} else {
+				fail(Ele_Name + " is not visible on page");
+			}
+		} catch (Exception e) {
+			fail(e.getMessage());
+		}
+	}
 }

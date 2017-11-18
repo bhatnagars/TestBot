@@ -3,7 +3,6 @@ package harness;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -25,13 +24,10 @@ import org.json.simple.parser.ParseException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.SkipException;
-import org.testng.annotations.AfterSuite;
-
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 
@@ -338,38 +334,40 @@ public class Harness extends ExtentTestNGReportBuilder {
 	}
 
 	public static AndroidDriver<MobileElement> android() throws MalformedURLException {
+		
 		// Create object of DesiredCapabilities class and specify android platform
 		DesiredCapabilities capabilities = DesiredCapabilities.android();
-		
 
 		// set the capability to execute test in chrome browser
-		 if(Browser.get().equalsIgnoreCase("androidapp")) {
-			capabilities.setCapability("appPackage",Propmap.get("appPackage"));
-			capabilities.setCapability("appActivity",Propmap.get("appActivity"));
-		 }else {
-			 capabilities.setCapability("browserName", Propmap.get("browserName")); 
-		 }
-			
-			
+		if (Browser.get().equalsIgnoreCase("androidapp")) {
+			capabilities.setCapability("appPackage", Propmap.get("appPackage"));
+			capabilities.setCapability("appActivity", Propmap.get("appActivity"));
+			// Set the device name as well (you can give any name)
+			capabilities.setCapability("deviceName", Propmap.get("deviceName"));
+			// set the android version as well
+			capabilities.setCapability("version", Propmap.get("version"));
+		} else {
+			capabilities.setCapability("browserName", Propmap.get("browserName"));
+			// Set the device name as well (you can give any name)
+			capabilities.setCapability("deviceName", Propmap.get("deviceName"));
+			// set the android version as well
+			capabilities.setCapability("version", Propmap.get("version"));
+
+		}
+
 		// set the capability to execute our test in Android Platform
-		capabilities.setCapability("platform",Propmap.get("platform"));
+		capabilities.setCapability("platform", Propmap.get("platform"));
 
 		// we need to define platform name
-		capabilities.setCapability("platformName",Propmap.get("platformName"));
+		capabilities.setCapability("platformName", Propmap.get("platformName"));
 
-		// Set the device name as well (you can give any name)
-		capabilities.setCapability("deviceName",Propmap.get("deviceName"));
-
-		// set the android version as well
-		capabilities.setCapability("version",Propmap.get("version"));
-		
-		URL url= null;
+		URL url = null;
 		// Create object of URL class and specify the appium server address
-		 if(Browser.get().equalsIgnoreCase("androidapp")) {
-		  url = new URL("http://127.0.0.1:4723/wd/hub");
-		 }else {
-			  url = new URL("http://127.0.0.1:5723/wd/hub");
-		 }
+		if (Browser.get().equalsIgnoreCase("androidapp")) {
+			url = new URL("http://127.0.0.1:5723/wd/hub");
+		} else {
+			url = new URL("http://127.0.0.1:4723/wd/hub");
+		}
 		// Create object of AndroidDriver class and pass the url and capability that we
 		// created
 		AndroidDriver<MobileElement> mdriver = new AndroidDriver<>(url, capabilities);
@@ -378,12 +376,10 @@ public class Harness extends ExtentTestNGReportBuilder {
 	}
 
 	// @SuppressWarnings("unchecked")
-	 
-
 	public synchronized String takesnapshot() {
 		String snapshotpath = "ScreenShots//" + System.currentTimeMillis() + ".png";
 		File scrFile = null;
-		//to check the driver
+		// to check the driver
 		try {
 			if (getmobDriver() != null) {
 				scrFile = ((TakesScreenshot) getmobDriver()).getScreenshotAs(OutputType.FILE);
@@ -398,6 +394,5 @@ public class Harness extends ExtentTestNGReportBuilder {
 		}
 		return snapshotpath;
 	}
-
 
 }

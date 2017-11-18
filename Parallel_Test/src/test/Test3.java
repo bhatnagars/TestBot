@@ -2,9 +2,6 @@ package test;
 
 import lib.*;
 
-import java.util.concurrent.TimeUnit;
-
-import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -14,7 +11,7 @@ import io.appium.java_client.android.AndroidDriver;
 
 public class Test3 extends ExtentTestNGReportBuilder {
 
-	private static AndroidDriver<MobileElement> driver;
+	private  AndroidDriver<MobileElement> driver;
 	private static MobileActions actions;
 
 	@BeforeTest
@@ -22,36 +19,23 @@ public class Test3 extends ExtentTestNGReportBuilder {
 	public void readdata(String param) {
 		actions = new MobileActions(param);
 		 createTest(param,"Amazon app test");
+		 
 		 driver = actions.getbrowser();
 	}
 
 @Test
   public void gtest3() {
 	  try {
-		  //test is to test the app
-			driver.get("https://linkedin.com");
-			driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
-			String title = driver.getTitle();
-			if(title.equalsIgnoreCase("Google")){
-				pass("Title is displayed as "+title+" as expected");
-				
-			}else{
-				fail("Title is displayed as "+title+" as expected-test2");
-			}
-			if(title.equalsIgnoreCase("Google")){
-				fail("Title is displayed as "+title+" as expected-test2");
-			}else{
-				fail("Title is not matching test2");
-			}
-			if(title.equalsIgnoreCase("Google")){
-				fail("Title is displayed as "+title+" as expected-test2");
-			}else{
-				fail("Title is not matching");
-			}	
+		  	//test is to test the app
+		    actions.Launchapp("http://linkedin.com");
+			actions.WaitforElementPresent("LinkedIn.Submitbutton", 5);
+			actions.entervalue("LinkedIn.regUsrName", "asdsdsds@jshsd.com");
+			actions.entervalue("LinkedIn.regPassword", "asdsdsdscom");
+			actions.mobclick("LinkedIn.Submitbutton");
+			actions.IsTextPresent("LinkedIn.Err",actions.testdata("ErrMsg"));
 		} catch (Exception err) {
 			System.out.println(err.getMessage());
 			fail(err.getMessage());
-			
 		}finally{	
 			driver.quit();
 		}
