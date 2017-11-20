@@ -10,6 +10,7 @@ import org.apache.poi.ss.format.CellTextFormatter;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.util.SystemOutLogger;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.testng.ITestResult;
@@ -30,6 +31,7 @@ public class ExtentTestNGReportBuilder  {
     private static ThreadLocal<String> test= new ThreadLocal<String>();
     private static Harness harness;
     private static ArrayList<String> failedtest= new ArrayList<String>() ;
+    private static ThreadLocal<Boolean> blnflg = new ThreadLocal<>();
     
 
 	@BeforeSuite
@@ -93,6 +95,7 @@ public class ExtentTestNGReportBuilder  {
     String scrnshot=	harness.takesnapshot();
     	parentTest.get().fail(p,MediaEntityBuilder.createScreenCaptureFromPath(scrnshot).build());
     	Reporter.getCurrentTestResult().setStatus(ITestResult.FAILURE);
+    	blnflg.set(false);
     	}catch(Exception er) {
     		System.out.println(er.getMessage());
     	}
@@ -106,7 +109,10 @@ public class ExtentTestNGReportBuilder  {
         	String Header = "TestCase;TestData;Browser;Status";
         	failedtest.add(Header);
         }
+        System.out.println(blnflg.get().equals(false));
+        if(blnflg.get().equals(false)) {
         failedtest.add(test.get()+";Fail");
+        }
     }
     
     @AfterSuite(alwaysRun=true)

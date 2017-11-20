@@ -36,7 +36,7 @@ public class Test3 extends ExtentTestNGReportBuilder {
 		} catch (Exception err) {
 			System.out.println(err.getMessage());
 			fail(err.getMessage());
-		}finally{	
+		}finally {
 			driver.quit();
 		}
   }

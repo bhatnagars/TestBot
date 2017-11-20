@@ -1,10 +1,8 @@
 package test;
 
 import lib.*;
-
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -13,7 +11,7 @@ import harness.ExtentTestNGReportBuilder;
 public class test2 extends ExtentTestNGReportBuilder {
 
 	private  WebDriver driver;
-	private static actions lib;
+	private  actions lib;
 
 	@BeforeTest
 	@Parameters("param")

@@ -16,7 +16,7 @@ import harness.Harness;
 public class WebActions extends ExtentTestNGReportBuilder {
 	
 	private  WebDriver driver;
-	private static actions lib;
+	private  actions lib;
 	
 	public WebActions(String param){
 		lib = new actions(param);
@@ -94,6 +94,7 @@ public class WebActions extends ExtentTestNGReportBuilder {
 	public void Navigate(String strNavigate) {
 		WebElement Navilink = null;
 		try {
+			System.out.println(strNavigate);
 			String Navigate[] = strNavigate.split(">");
 			for (int a = 0; a < Navigate.length; a++) {
 				Thread.sleep(2000);

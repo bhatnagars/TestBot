@@ -208,7 +208,7 @@ public class Harness extends ExtentTestNGReportBuilder {
 		SetEnvdetails(env[1].trim(), env[2].trim());
 		try {
 			datamap.clear();
-			System.out.println(TestDataRow.get().toString());
+			System.out.println(TestCase+"-"+TestDataRow.get().toString());
 			Object data1 = testdata.get(env[0].trim());
 			JSONArray mobj = (JSONArray) data1;
 			Iterator<JSONObject> mItr = mobj.iterator();
@@ -237,6 +237,7 @@ public class Harness extends ExtentTestNGReportBuilder {
 		} catch (Exception er) {
 			System.out.println(er.getMessage());
 		}
+		System.out.println(TestCase+"-"+datamap);
 		return datamap;
 	}
 

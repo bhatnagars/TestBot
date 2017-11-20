@@ -25,7 +25,7 @@ public class Test1 extends ExtentTestNGReportBuilder {
 
 	@Parameters("param")
 	@BeforeTest
-	public void atest(String param) {
+	public void Test(String param) {
 		lib = new WebActions(param);
 		driver = lib.getbrowser(param);
 		url = lib.getglbdata("URL");

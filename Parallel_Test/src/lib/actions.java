@@ -20,9 +20,9 @@ import harness.Harness;
 public class actions extends ExtentTestNGReportBuilder{
 
 	private  WebDriver driver;
-	private AndroidDriver<WebElement> mobdriver;
-	private  Map<String, String> globalData, OR;
-	private  Map<String, String>  TestData;
+	private 	 AndroidDriver<WebElement> mobdriver;
+	private  static Map<String, String> globalData, OR;
+	private  static Map<String, String>  TestData;
 	private  static Harness harness;
 
 	public actions(String param){
