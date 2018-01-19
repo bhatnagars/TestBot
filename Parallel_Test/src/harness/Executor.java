@@ -1,5 +1,6 @@
 package harness;
 
+import java.awt.print.Printable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,6 +25,8 @@ try{
 	harness = new Harness();
 	//Reading the executor file for all the artifacts
 	list = Harness.ReadExecutorfile();
+	if(list.isEmpty())
+		throw new Exception();
 	harness.ReadTestConfig();
 	Propmap=Harness.ReadPropertyfile(); //reading the property file
 	CleanReport();
@@ -57,7 +60,7 @@ try{
 	tng.setXmlSuites(suites);
 	tng.run();
   }catch(Exception ee){
-	  System.out.println(ee.getMessage());
+	 System.out.println(ee);
   }
  }
   
