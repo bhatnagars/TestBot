@@ -46,10 +46,6 @@ public class actions extends ExtentTestNGReportBuilder{
 	}
 	
 	
-// public AndroidDriver<WebElement> getbrowser(){
-//	 mobdriver = Harness.getmobbrowser();
-//	 return mobdriver;
-// }
 
 	public void Launch(String URL){
 		try {
@@ -74,7 +70,7 @@ public class actions extends ExtentTestNGReportBuilder{
 		return value;
 	}
 
-	public String GettestData(String strkey) {
+	public synchronized String GettestData(String strkey) {
 		String strdata = "";
 		try {
 			strdata = TestData.get(strkey);

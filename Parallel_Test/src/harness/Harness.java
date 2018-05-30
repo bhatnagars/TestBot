@@ -52,18 +52,21 @@ public class Harness extends ExtentTestNGReportBuilder {
 		} catch (Exception err) {
 			System.out.println(err.getMessage());
 		}
-	}
-
-	public static ArrayList<String> ReadExecutorfile() throws Exception {
+	}	
+	
+	public static ArrayList<String> ReadExecutorfile()  {
+		int x = 1;
+		try {
 		int Execution_col = 0, Browser_col = 0, TestDataSet_col = 0, TestCaseName_col = 0;
 		XSSFWorkbook Xlfile = new XSSFWorkbook("Executor.xlsx");
 
-		XSSFSheet sheet = Xlfile.getSheet("Sheet1");
+		XSSFSheet sheet = Xlfile.getSheet(Propmap.get("Sheetname"));
 
 		Row row = sheet.getRow(0);
 		int Col_cnt = row.getPhysicalNumberOfCells();
 
-		for (int a = 0; a < Col_cnt; a++) {
+		for (int a=0; a < Col_cnt; a++) {
+			
 			Cell cell = row.getCell(a);
 			// getting the execution cell name and column number
 			switch (getcellvalue(cell)) {
@@ -83,9 +86,10 @@ public class Harness extends ExtentTestNGReportBuilder {
 		}
 
 		// creating the array list for execution suite
-		for (int a = 1; a < sheet.getPhysicalNumberOfRows(); a++) {
-			row = sheet.getRow(a);
+		for (x = 1; x < sheet.getPhysicalNumberOfRows(); x++) {
+			row = sheet.getRow(x);
 			Cell cell = row.getCell(Execution_col);
+ 
 			if (getcellvalue(cell).equalsIgnoreCase("y")) {
 				String browser = getcellvalue(row.getCell(Browser_col));
 				String TestData = getcellvalue(row.getCell(TestDataSet_col));
@@ -94,6 +98,10 @@ public class Harness extends ExtentTestNGReportBuilder {
 			}
 		}
 		Xlfile.close();
+		}catch(Exception er) {
+			System.out.println("There is no data found at row -"+ x+" ,Please make sure there are no blank rows left");
+			list.clear();
+		}
 		return list;
 	}
 
@@ -109,6 +117,8 @@ public class Harness extends ExtentTestNGReportBuilder {
 		case Cell.CELL_TYPE_NUMERIC:
 			cellval = String.valueOf(cell.getNumericCellValue());
 			break;
+		case Cell.CELL_TYPE_BLANK:
+			cellval = "";
 
 		}
 		return cellval;
@@ -201,7 +211,7 @@ public class Harness extends ExtentTestNGReportBuilder {
 	}
 
 	@SuppressWarnings("unchecked")
-	public Map<String, String> Readtestdata(String TestCase) {
+	public static Map<String, String> Readtestdata(String TestCase) {
 
 		String strvalue = null;
 		String env[] = TestCase.split(";");
@@ -217,7 +227,7 @@ public class Harness extends ExtentTestNGReportBuilder {
 				Iterator<String> h = kobj.keySet().iterator();
 				while (h.hasNext()) {
 					String key = h.next();
-					if (key.equalsIgnoreCase(TestDataRow.get().toString())) {
+					if (key.equalsIgnoreCase(TestDataRow.get().toString().trim())) {
 						Object value = kobj.get(key);
 						JSONArray tobj = (JSONArray) value;
 						Iterator<JSONObject> tdItr = tobj.iterator();

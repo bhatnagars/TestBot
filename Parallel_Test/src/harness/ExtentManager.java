@@ -18,12 +18,13 @@ public class ExtentManager {
     
     public static ExtentReports createInstance(String fileName) {
         ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(fileName+".html");
-        htmlReporter.config().setTestViewChartLocation(ChartLocation.BOTTOM);
+        htmlReporter.config().setTestViewChartLocation(ChartLocation.TOP);
         htmlReporter.config().setChartVisibilityOnOpen(true);
         htmlReporter.config().setTheme(Theme.STANDARD);
         htmlReporter.config().setDocumentTitle("Automation Report");
         htmlReporter.config().setEncoding("utf-8");
         htmlReporter.config().setReportName("Regression Suite");
+        htmlReporter.config().setTimeStampFormat("hh:mm:ss");
 //        htmlReporter.loadXMLConfig("//Users//NIMIT//Documents//workspace//extentreports-java-3.0.7//extent-config.xml");
         Report = new ExtentReports();
         Report.attachReporter(htmlReporter);

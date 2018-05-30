@@ -54,7 +54,7 @@ public class ExtentTestNGReportBuilder  {
     //@BeforeClass
     public synchronized void createTest(String param,String Description) {
     	    String value[] = param.split(";");
-    	    String testname = value[0].trim()+"-["+value[1].trim()+"-"+value[2].trim()+"]";
+    	    String testname = value[1].trim()+"-"+value[2].trim();
         ExtentTest parent = extent.createTest(testname,Description);
         parentTest.set(parent);  
         test.set(param);

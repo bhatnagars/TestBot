@@ -22,14 +22,14 @@
 		],
 		"Test1": [
 			{
-				"TD1": [
+				"Test1_TD1": [
 					{
 						"Message": "Invalid Email or Password",
 						"Navigate": "My Account > Login",
 						"Welcome": "John"
 					}
 				],
-				"TD2": [
+				"Test1_TD2": [
 					{
 						"Message": "Invalid Email or Password",
 						"Navigate": "My Account > Login",
@@ -38,9 +38,9 @@
 				]
 			}
 		],
-		"test2": [
+		"Test2": [
 			{
-				"TD1": [
+				"Test2_TD1": [
 					{
 						"Message": "Invalid Email or Password",
 						"Navigate": "My Account > Mogin",
@@ -51,7 +51,7 @@
 		],
 		"Test3": [
 			{
-				"TD1": [
+				"Test3_TD1": [
 					{
 						"ErrMsg": "Please enter your first name",
 						"one": "two",

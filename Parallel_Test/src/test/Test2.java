@@ -1,22 +1,21 @@
 package test;
 
 import lib.*;
-import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import harness.ExtentTestNGReportBuilder;
 
-public class test2 extends ExtentTestNGReportBuilder {
+public class Test2 extends ExtentTestNGReportBuilder {
 
 	private  WebDriver driver;
-	private  actions lib;
+	private  WebActions lib;
 
 	@BeforeTest
 	@Parameters("param")
 	public void readdata(String param) {
-		 lib = new actions(param);
+		 lib = new WebActions(param);
 		 createTest(param,"Test2 description");
 		 driver = lib.getbrowser(param);
 	}
@@ -24,9 +23,7 @@ public class test2 extends ExtentTestNGReportBuilder {
 @Test
   public void atest2() {
 	  try {
-			driver.get("https://linkedin.com");
-			driver.manage().window().maximize();
-			driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
+		    lib.Launch("https://linkedin.com");
 			String title = driver.getTitle();
 			if(title.equalsIgnoreCase("Google")){
 				pass("Title is displayed as "+title+" as expected");

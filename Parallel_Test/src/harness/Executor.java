@@ -1,6 +1,5 @@
 package harness;
 
-import java.awt.print.Printable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,6 +22,9 @@ public class Executor extends ExtentTestNGReportBuilder {
   public void ExecuteSuite() {
 try{
 	harness = new Harness();
+	harness.ReadTestConfig();
+	Propmap=Harness.ReadPropertyfile(); //reading the property file
+	
 	//Reading the executor file for all the artifacts
 	list = Harness.ReadExecutorfile();
 	if(list.isEmpty())
