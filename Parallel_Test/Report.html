@@ -8,12 +8,12 @@
 	<meta name='description' content='' />
 	<meta name='robots' content='noodp, noydir' />
 	<meta name='viewport' content='width=device-width, initial-scale=1' />
-	<meta id="timeStampFormat" name="timeStampFormat" content='MMM d, yyyy hh:mm:ss a'/>
+	<meta id="timeStampFormat" name="timeStampFormat" content='hh:mm:ss'/>
 	
 	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600' rel='stylesheet' type='text/css'>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-		<link href='https://cdn.rawgit.com/anshooarora/extentreports-java/bee7a4abdc590e21eec8618a90c81ff4d16e500a/dist/css/extent.css' type='text/css' rel='stylesheet' />
+		<link href='https://cdn.rawgit.com/anshooarora/extentreports-java/b4a58fcfd1e137bd9287244035a7c80d3d73b3af/dist/css/extent.css' type='text/css' rel='stylesheet' />
 	
 	<title>Automation Report</title>
 
@@ -46,12 +46,12 @@
 		<ul id='nav-mobile' class='right hide-on-med-and-down nav-right'>
 			<li>
                 <a href='#!'>
-                    <span class='label suite-start-time blue darken-3'>Nov 20, 2017 10:58:26 PM</span>
+                    <span class='label suite-start-time blue darken-3'>11:42:06</span>
 				</a>
 			</li>
 			<li>
                 <a href='#!'>
-                    <span class='label blue darken-3'>v3.0.7</span>
+                    <span class='label blue darken-3'>3.1.2</span>
 				</a>
 			</li>
 		</ul>
@@ -73,6 +73,7 @@
 				<ul id='tests-toggle' class='dropdown-content'>
 											<li status='pass'><a href='#!'>Pass <i class='material-icons green-text'>check_circle</i></a></li>
 						<li status='fail'><a href='#!'>Fail <i class='material-icons red-text'>cancel</i></a></li>
+						<li status='skip'><a href='#!'>Skip <i class='material-icons cyan-text'>redo</i></a></li>
 					<li class='divider'></li>
 					<li status='clear' clear='true'><a href='#!'>Clear Filters <i class='material-icons'>clear</i></a></li>
 				</ul>
@@ -114,6 +115,41 @@
 	</section>
 
 
+<div id='test-view-charts' class='subview-full'>
+	<div id='charts-row' class='row nm-v nm-h'>
+		<div class='col s12 m6 l6 np-h'>
+			<div class='card-panel nm-v'>
+				<div class='left panel-name'>Tests</div>
+				<div class='chart-box'>
+					<canvas id='parent-analysis' width='100' height='80'></canvas>
+				</div>
+				<div class='block text-small'>
+					<span class='tooltipped' data-position='top' data-tooltip='0%'><span class='strong'>0</span> test(s) passed</span>
+				</div>
+				<div class='block text-small'>
+					<span class='strong tooltipped' data-position='top' data-tooltip='66.667%'>2</span> test(s) failed, <span class='strong tooltipped' data-position='top' data-tooltip='33.333%'>1</span> others
+				</div>
+			</div>
+		</div>
+		
+		<div class='col s12 m6 l6 np-h'>
+			<div class='card-panel nm-v'>
+				<div class='left panel-name'>Steps</div>
+				<div class='chart-box'>
+					<canvas id='child-analysis' width='100' height='80'></canvas>
+				</div>
+				<div class='block text-small'>
+					<span class='tooltipped' data-position='top' data-tooltip='26.667%'><span class='strong'>4</span> step(s) passed</span>
+				</div>
+				<div class='block text-small'>
+					<span class='strong tooltipped' data-position='top' data-tooltip='66.667%'>10</span> step(s) failed, <span class='strong tooltipped' data-position='top' data-tooltip='6.667%'>1</span> others
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
 	<div class='subview-left left'>
 		
 		<div class='view-summary'>
@@ -123,15 +159,15 @@
 				
 				<li class='test displayed active  fail' status='fail' bdd='false' test-id='1'>
 					<div class='test-heading'>
-						<span class='test-name'>test2-[TD1-safari]</span>
-						<span class='test-time'>Nov 20, 2017 10:58:26 PM</span>
+						<span class='test-name'>Test2_TD1-safari</span>
+						<span class='test-time'>11:42:06</span>
 						<span class='test-status right fail'>fail</span>
 					</div>
 					<div class='test-content hide'>
 <div class='test-time-info'>
-	<span class='label start-time'>Nov 20, 2017 10:58:26 PM</span>
-	<span class='label end-time'>Nov 20, 2017 10:58:32 PM</span>
-	<span class='label time-taken grey lighten-1 white-text'>0h 0m 5s+659ms</span>
+	<span class='label start-time'>11:42:06</span>
+	<span class='label end-time'>11:42:13</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 6s+642ms</span>
 </div>
 	<div class='test-desc'>Test2 description </div>
 	<div class='test-steps'>
@@ -144,20 +180,25 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr class='log' status='fail'>
-					<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
-					<td class='timestamp'>10:58:31 PM</td>
-					<td class='step-details'>Title is displayed as LinkedIn: Log In or Sign Up as expected-test2<img data-featherlight='ScreenShots//1511198911176.png' width='10%' src='ScreenShots//1511198911176.png' data-src='ScreenShots//1511198911176.png'></td>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:42:12 PM</td>
+					<td class='step-details'>https://linkedin.com is launched</td>
 				</tr>
 				<tr class='log' status='fail'>
 					<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
-					<td class='timestamp'>10:58:31 PM</td>
-					<td class='step-details'>Title is not matching test2<img data-featherlight='ScreenShots//1511198911385.png' width='10%' src='ScreenShots//1511198911385.png' data-src='ScreenShots//1511198911385.png'></td>
+					<td class='timestamp'>11:42:12 PM</td>
+					<td class='step-details'>Title is displayed as LinkedIn: Log In or Sign Up as expected-test2<img data-featherlight='ScreenShots//1531073532372.png' width='10%' src='ScreenShots//1531073532372.png' data-src='ScreenShots//1531073532372.png'></td>
 				</tr>
 				<tr class='log' status='fail'>
 					<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
-					<td class='timestamp'>10:58:32 PM</td>
-					<td class='step-details'>Title is not matching<img data-featherlight='ScreenShots//1511198911856.png' width='10%' src='ScreenShots//1511198911856.png' data-src='ScreenShots//1511198911856.png'></td>
+					<td class='timestamp'>11:42:13 PM</td>
+					<td class='step-details'>Title is not matching test2<img data-featherlight='ScreenShots//1531073532806.png' width='10%' src='ScreenShots//1531073532806.png' data-src='ScreenShots//1531073532806.png'></td>
+				</tr>
+				<tr class='log' status='fail'>
+					<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
+					<td class='timestamp'>11:42:13 PM</td>
+					<td class='step-details'>Title is not matching<img data-featherlight='ScreenShots//1531073533253.png' width='10%' src='ScreenShots//1531073533253.png' data-src='ScreenShots//1531073533253.png'></td>
 				</tr>
 			</tbody>
 		</table>
@@ -166,17 +207,51 @@
 				</li>
 				
 				
-				<li class='test displayed active  fail' status='fail' bdd='false' test-id='2'>
+				<li class='test displayed active  skip' status='skip' bdd='false' test-id='2'>
 					<div class='test-heading'>
-						<span class='test-name'>Test1-[TD1-firefox]</span>
-						<span class='test-time'>Nov 20, 2017 10:58:31 PM</span>
+						<span class='test-name'>Test1-[TD4-Safari]</span>
+						<span class='test-time'>11:42:06</span>
+						<span class='test-status right skip'>skip</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>11:42:06</span>
+	<span class='label end-time'>11:42:07</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+24ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='skip'>
+					<td class='status skip' title='skip' alt='skip'><i class='material-icons'>redo</i></td>
+					<td class='timestamp'>11:42:07 PM</td>
+					<td class='step-details'>Either TestData , OR Data or Config file is not present or not data present</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  fail' status='fail' bdd='false' test-id='3'>
+					<div class='test-heading'>
+						<span class='test-name'>Test1_TD1-firefox</span>
+						<span class='test-time'>11:42:10</span>
 						<span class='test-status right fail'>fail</span>
 					</div>
 					<div class='test-content hide'>
 <div class='test-time-info'>
-	<span class='label start-time'>Nov 20, 2017 10:58:31 PM</span>
-	<span class='label end-time'>Nov 20, 2017 10:59:55 PM</span>
-	<span class='label time-taken grey lighten-1 white-text'>0h 1m 23s+198ms</span>
+	<span class='label start-time'>11:42:10</span>
+	<span class='label end-time'>11:42:45</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 34s+761ms</span>
 </div>
 	<div class='test-desc'>Test Description </div>
 	<div class='test-steps'>
@@ -191,74 +266,75 @@
 			<tbody>
 				<tr class='log' status='pass'>
 					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
-					<td class='timestamp'>10:58:48 PM</td>
+					<td class='timestamp'>11:42:21 PM</td>
 					<td class='step-details'>http://phptravels.net is launched</td>
 				</tr>
 				<tr class='log' status='pass'>
 					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
-					<td class='timestamp'>10:58:48 PM</td>
+					<td class='timestamp'>11:42:21 PM</td>
 					<td class='step-details'>PHPTRAVELS is displayed as expected</td>
 				</tr>
 				<tr class='log' status='pass'>
 					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
-					<td class='timestamp'>10:58:55 PM</td>
+					<td class='timestamp'>11:42:28 PM</td>
 					<td class='step-details'>Clicked on MY ACCOUNT</td>
 				</tr>
 				<tr class='log' status='fail'>
 					<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
-					<td class='timestamp'>10:59:19 PM</td>
-					<td class='step-details'>Failed to Naigate to [[FirefoxDriver: firefox on ANY (42dec083-826e-c745-b33c-f4e4ec304b80)] -> xpath: //*[@class='navbar-collapse collapse']//a[contains(text(),'My Account')]]
-Unable to locate element: //*[@class='navbar-collapse collapse']//a[contains(text(),'Mogin')]
+					<td class='timestamp'>11:42:31 PM</td>
+					<td class='step-details'>Failed to Naigate to [[FirefoxDriver: firefox on MAC (9f8ead15-26e4-324e-8917-5942e1437995)] -> xpath: //*[@class='nav navbar-nav navbar-right']//a[contains(text(),'My Account')]]
+Unable to locate element: //*[@class='nav navbar-nav navbar-right']//a[contains(text(),'Mogin')]
 For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: '3.4.0', revision: 'unknown', time: 'unknown'
-System info: host: 'Nimits-MacBook-Pro.local', ip: 'fe80:0:0:0:1cad:caf6:881f:8cff%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.13.1', java.version: '1.8.0_121'
+Build info: version: '3.8.1', revision: '6e95a6684b', time: '2017-12-01T18:33:54.468Z'
+System info: host: 'Nimits-MacBook-Pro.local', ip: 'fe80:0:0:0:1826:957e:11fe:87ff%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.13.5', java.version: '1.8.0_121'
 Driver info: org.openqa.selenium.firefox.FirefoxDriver
-Capabilities [{moz:profile=/var/folders/qr/61v6cc155l5904wqp7whdjjm0000gn/T/rust_mozprofile.38Y4tENa4bAR, rotatable=false, timeouts={implicit=0.0, pageLoad=300000.0, script=30000.0}, pageLoadStrategy=normal, platform=ANY, specificationLevel=0.0, moz:accessibilityChecks=false, acceptInsecureCerts=false, browserVersion=53.0.2, platformVersion=17.2.0, moz:processID=1228.0, browserName=firefox, javascriptEnabled=true, platformName=darwin}]
-Session ID: 42dec083-826e-c745-b33c-f4e4ec304b80
-*** Element info: {Using=xpath, value=//*[@class='navbar-collapse collapse']//a[contains(text(),'Mogin')]}<img data-featherlight='ScreenShots//1511198957963.png' width='10%' src='ScreenShots//1511198957963.png' data-src='ScreenShots//1511198957963.png'></td>
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 59.0.2, javascriptEnabled: true, moz:accessibilityChecks: false, moz:headless: false, moz:processID: 983, moz:profile: /var/folders/qr/61v6cc155l5..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: MAC, platformName: MAC, platformVersion: 17.6.0, rotatable: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}}
+Session ID: 9f8ead15-26e4-324e-8917-5942e1437995
+*** Element info: {Using=xpath, value=//*[@class='nav navbar-nav navbar-right']//a[contains(text(),'Mogin')]}<img data-featherlight='ScreenShots//1531073550634.png' width='10%' src='ScreenShots//1531073550634.png' data-src='ScreenShots//1531073550634.png'></td>
 				</tr>
 				<tr class='log' status='fail'>
 					<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
-					<td class='timestamp'>10:59:46 PM</td>
+					<td class='timestamp'>11:42:38 PM</td>
 					<td class='step-details'>Unable to locate element: //input[@name='username']
 For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: '3.4.0', revision: 'unknown', time: 'unknown'
-System info: host: 'Nimits-MacBook-Pro.local', ip: 'fe80:0:0:0:1cad:caf6:881f:8cff%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.13.1', java.version: '1.8.0_121'
+Build info: version: '3.8.1', revision: '6e95a6684b', time: '2017-12-01T18:33:54.468Z'
+System info: host: 'Nimits-MacBook-Pro.local', ip: 'fe80:0:0:0:1826:957e:11fe:87ff%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.13.5', java.version: '1.8.0_121'
 Driver info: org.openqa.selenium.firefox.FirefoxDriver
-Capabilities [{moz:profile=/var/folders/qr/61v6cc155l5904wqp7whdjjm0000gn/T/rust_mozprofile.38Y4tENa4bAR, rotatable=false, timeouts={implicit=0.0, pageLoad=300000.0, script=30000.0}, pageLoadStrategy=normal, platform=ANY, specificationLevel=0.0, moz:accessibilityChecks=false, acceptInsecureCerts=false, browserVersion=53.0.2, platformVersion=17.2.0, moz:processID=1228.0, browserName=firefox, javascriptEnabled=true, platformName=darwin}]
-Session ID: 42dec083-826e-c745-b33c-f4e4ec304b80
-*** Element info: {Using=xpath, value=//input[@name='username']}<img data-featherlight='ScreenShots//1511198984632.png' width='10%' src='ScreenShots//1511198984632.png' data-src='ScreenShots//1511198984632.png'></td>
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 59.0.2, javascriptEnabled: true, moz:accessibilityChecks: false, moz:headless: false, moz:processID: 983, moz:profile: /var/folders/qr/61v6cc155l5..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: MAC, platformName: MAC, platformVersion: 17.6.0, rotatable: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}}
+Session ID: 9f8ead15-26e4-324e-8917-5942e1437995
+*** Element info: {Using=xpath, value=//input[@name='username']}<img data-featherlight='ScreenShots//1531073557142.png' width='10%' src='ScreenShots//1531073557142.png' data-src='ScreenShots//1531073557142.png'></td>
 				</tr>
 				<tr class='log' status='fail'>
 					<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
-					<td class='timestamp'>10:59:49 PM</td>
-					<td class='step-details'>Login.UserName is not visible on page<img data-featherlight='ScreenShots//1511198986999.png' width='10%' src='ScreenShots//1511198986999.png' data-src='ScreenShots//1511198986999.png'></td>
+					<td class='timestamp'>11:42:39 PM</td>
+					<td class='step-details'>Login.UserName is not visible on page<img data-featherlight='ScreenShots//1531073558428.png' width='10%' src='ScreenShots//1531073558428.png' data-src='ScreenShots//1531073558428.png'></td>
 				</tr>
 				<tr class='log' status='fail'>
 					<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
-					<td class='timestamp'>10:59:54 PM</td>
-					<td class='step-details'>Failed to decode response from marionette
-Build info: version: '3.4.0', revision: 'unknown', time: 'unknown'
-System info: host: 'Nimits-MacBook-Pro.local', ip: 'fe80:0:0:0:1cad:caf6:881f:8cff%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.13.1', java.version: '1.8.0_121'
+					<td class='timestamp'>11:42:40 PM</td>
+					<td class='step-details'>Unable to locate element: //input[@name='password']
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.8.1', revision: '6e95a6684b', time: '2017-12-01T18:33:54.468Z'
+System info: host: 'Nimits-MacBook-Pro.local', ip: 'fe80:0:0:0:1826:957e:11fe:87ff%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.13.5', java.version: '1.8.0_121'
 Driver info: org.openqa.selenium.firefox.FirefoxDriver
-Capabilities [{moz:profile=/var/folders/qr/61v6cc155l5904wqp7whdjjm0000gn/T/rust_mozprofile.38Y4tENa4bAR, rotatable=false, timeouts={implicit=0.0, pageLoad=300000.0, script=30000.0}, pageLoadStrategy=normal, platform=ANY, specificationLevel=0.0, moz:accessibilityChecks=false, acceptInsecureCerts=false, browserVersion=53.0.2, platformVersion=17.2.0, moz:processID=1228.0, browserName=firefox, javascriptEnabled=true, platformName=darwin}]
-Session ID: 42dec083-826e-c745-b33c-f4e4ec304b80
-*** Element info: {Using=xpath, value=//input[@name='password']}<img data-featherlight='ScreenShots//1511198994981.png' width='10%' src='ScreenShots//1511198994981.png' data-src='ScreenShots//1511198994981.png'></td>
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 59.0.2, javascriptEnabled: true, moz:accessibilityChecks: false, moz:headless: false, moz:processID: 983, moz:profile: /var/folders/qr/61v6cc155l5..., moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: MAC, platformName: MAC, platformVersion: 17.6.0, rotatable: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}}
+Session ID: 9f8ead15-26e4-324e-8917-5942e1437995
+*** Element info: {Using=xpath, value=//input[@name='password']}<img data-featherlight='ScreenShots//1531073559873.png' width='10%' src='ScreenShots//1531073559873.png' data-src='ScreenShots//1531073559873.png'></td>
 				</tr>
 				<tr class='log' status='fail'>
 					<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
-					<td class='timestamp'>10:59:55 PM</td>
-					<td class='step-details'>Login.Password is not visible on page<img data-featherlight='ScreenShots//1511198994993.png' width='10%' src='ScreenShots//1511198994993.png' data-src='ScreenShots//1511198994993.png'></td>
+					<td class='timestamp'>11:42:42 PM</td>
+					<td class='step-details'>Login.Password is not visible on page<img data-featherlight='ScreenShots//1531073560971.png' width='10%' src='ScreenShots//1531073560971.png' data-src='ScreenShots//1531073560971.png'></td>
 				</tr>
 				<tr class='log' status='fail'>
 					<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
-					<td class='timestamp'>10:59:55 PM</td>
-					<td class='step-details'>Failed to click<img data-featherlight='ScreenShots//1511198995019.png' width='10%' src='ScreenShots//1511198995019.png' data-src='ScreenShots//1511198995019.png'></td>
+					<td class='timestamp'>11:42:43 PM</td>
+					<td class='step-details'>Failed to click<img data-featherlight='ScreenShots//1531073562137.png' width='10%' src='ScreenShots//1531073562137.png' data-src='ScreenShots//1531073562137.png'></td>
 				</tr>
 				<tr class='log' status='fail'>
 					<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
-					<td class='timestamp'>10:59:55 PM</td>
-					<td class='step-details'>welcome page is not displayed<img data-featherlight='ScreenShots//1511198995043.png' width='10%' src='ScreenShots//1511198995043.png' data-src='ScreenShots//1511198995043.png'></td>
+					<td class='timestamp'>11:42:45 PM</td>
+					<td class='step-details'>welcome page is not displayed<img data-featherlight='ScreenShots//1531073565717.png' width='10%' src='ScreenShots//1531073565717.png' data-src='ScreenShots//1531073565717.png'></td>
 				</tr>
 			</tbody>
 		</table>
@@ -288,41 +364,6 @@ Session ID: 42dec083-826e-c745-b33c-f4e4ec304b80
 	</div>
 	<!-- subview right -->
 
-
-<div id='test-view-charts' class='subview-full'>
-	<div id='charts-row' class='row nm-v nm-h'>
-		<div class='col s12 m6 l6 np-h'>
-			<div class='card-panel nm-v'>
-				<div class='left panel-name'>Tests</div>
-				<div class='chart-box'>
-					<canvas id='parent-analysis' width='100' height='80'></canvas>
-				</div>
-				<div class='block text-small'>
-					<span class='tooltipped' data-position='top' data-tooltip='0%'><span class='strong'>0</span> test(s) passed</span>
-				</div>
-				<div class='block text-small'>
-					<span class='strong tooltipped' data-position='top' data-tooltip='100%'>2</span> test(s) failed, <span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> others
-				</div>
-			</div>
-		</div>
-		
-		<div class='col s12 m6 l6 np-h'>
-			<div class='card-panel nm-v'>
-				<div class='left panel-name'>Steps</div>
-				<div class='chart-box'>
-					<canvas id='child-analysis' width='100' height='80'></canvas>
-				</div>
-				<div class='block text-small'>
-					<span class='tooltipped' data-position='top' data-tooltip='23.077%'><span class='strong'>3</span> step(s) passed</span>
-				</div>
-				<div class='block text-small'>
-					<span class='strong tooltipped' data-position='top' data-tooltip='76.923%'>10</span> step(s) failed, <span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> others
-				</div>
-			</div>
-		</div>
-		
-	</div>
-</div>
 </div>
 <!-- test view -->
 <!-- category view -->
@@ -335,31 +376,31 @@ Session ID: 42dec083-826e-c745-b33c-f4e4ec304b80
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Tests
-					<div class='panel-lead'>2</div>
+					<div class='panel-lead'>3</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Steps
-					<div class='panel-lead'>13</div>
+					<div class='panel-lead'>15</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Start
-					<div class='panel-lead'>Nov 20, 2017 10:58:26 PM</div>
+					<div class='panel-lead'>11:42:06</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 			 		End
-			 		<div class='panel-lead'>Nov 20, 2017 10:59:55 PM</div>
+			 		<div class='panel-lead'>11:42:45</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Time Taken
-					<div class='panel-lead'>88,623ms</div>
+					<div class='panel-lead'>38,933ms</div>
 				</div>
 			</div>
 		</div>
@@ -377,17 +418,17 @@ Session ID: 42dec083-826e-c745-b33c-f4e4ec304b80
 				fatalParent: 0,
 				errorParent: 0,
 				warningParent: 0,
-				skipParent: 0,
-				exceptionsParent: 2,
+				skipParent: 1,
+				exceptionsParent: 3,
 				
-				passChild: 3,
+				passChild: 4,
 				failChild: 10,
 				fatalChild: 0,
 				errorChild: 0,
 				warningChild: 0,
-				skipChild: 0,
+				skipChild: 1,
 				infoChild: 0,
-				exceptionsChild: 10,
+				exceptionsChild: 11,
 				
 				passGrandChild: 0,
 				failGrandChild: 0,

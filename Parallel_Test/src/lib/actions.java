@@ -21,16 +21,18 @@ public class actions extends ExtentTestNGReportBuilder{
 
 	private  WebDriver driver;
 	private 	 AndroidDriver<WebElement> mobdriver;
-	private  static Map<String, String> globalData, OR;
-	private  static Map<String, String>  TestData;
-	private  static Harness harness;
-
+	private   Map<String, String> globalData, OR;
+	private   ThreadLocal<Map<String, String>> TestData = new ThreadLocal<Map<String, String>>() ;
+	private   Harness harness;
+	
 	public actions(String param){
 		harness = new Harness();
 		globalData = Harness.GetPropertyData();
 		OR = Harness.GetOR();
-		TestData =  harness.Readtestdata(param);
-		if (OR.isEmpty() || globalData.isEmpty() || TestData.isEmpty() ) {
+		TestData.remove();
+		TestData.set(harness.Readtestdata(param));
+		if (TestData.get().isEmpty() ) {
+			System.out.println(param+"=======skipping=================");
 			skipclass(param);
 			throw new SkipException("skip");
 		}
@@ -71,13 +73,13 @@ public class actions extends ExtentTestNGReportBuilder{
 	}
 
 	public synchronized String GettestData(String strkey) {
-		String strdata = "";
+		ThreadLocal<String> strdata = new ThreadLocal<>();
 		try {
-			strdata = TestData.get(strkey);
+			strdata.set(TestData.get().get(strkey));
 		} catch (Exception err) {
 			fail(err.getMessage());
 		}
-		return strdata;
+		return strdata.get();
 	}
 
 	public By Getlocator(String strlocator) {

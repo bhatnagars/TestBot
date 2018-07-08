@@ -1,7 +1,5 @@
 package lib;
 
-import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -15,14 +13,14 @@ import harness.Harness;
 
 public class WebActions extends ExtentTestNGReportBuilder {
 	
-	private  WebDriver driver;
+	private   WebDriver driver;
 	private  actions lib;
 	
 	public WebActions(String param){
 		lib = new actions(param);
 	}
 	
-	public WebDriver getbrowser(String param) {
+	public  WebDriver getbrowser(String param) {
 		driver = Harness.getbrowser(param.split(";")[2]);
 		if(driver==null) {
 			Reporter.log("Driver is null");
@@ -34,11 +32,11 @@ public class WebActions extends ExtentTestNGReportBuilder {
 	public void Launch(String URL){
 		try {
 			driver.get(URL);
-			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		//	driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 			driver.manage().window().maximize();
 			pass(URL + " is launched");
 		} catch (Exception e) {
-			fail(URL);
+			fail(URL + e);
 		}
 
 	}
@@ -91,14 +89,14 @@ public class WebActions extends ExtentTestNGReportBuilder {
 		}
 	}
 
-	public void Navigate(String strNavigate) {
+	public void Navigate(String navigate2) {
 		WebElement Navilink = null;
 		try {
-			System.out.println(strNavigate);
-			String Navigate[] = strNavigate.split(">");
+			System.out.println(navigate2);
+			String Navigate[] = navigate2.split(">");
 			for (int a = 0; a < Navigate.length; a++) {
 				Thread.sleep(2000);
-					Navilink = driver.findElement(By.xpath("//*[@class='navbar-collapse collapse']//a[contains(text(),'" + Navigate[a].trim() + "')]"));
+					Navilink = driver.findElement(By.xpath("//*[@class='nav navbar-nav navbar-right']//a[contains(text(),'" + Navigate[a].trim() + "')]"));
 					jsclick(Navilink);
 			}
 		} catch (Exception e) {
@@ -203,9 +201,9 @@ return flgbln;
 	}
 	
 public String getdata(String param) {
-	String data ="";
-	data =lib.GettestData(param);
-	
+	System.out.println(param+"=-=-=-=-=-=-getdata");
+	String  data = "";
+	data = lib.GettestData(param);
 	return data;
 }
 

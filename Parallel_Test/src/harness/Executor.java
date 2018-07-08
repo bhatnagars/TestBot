@@ -45,7 +45,7 @@ try{
 	suite.setName("Regression Suite");
 	if(Propmap.get("Execution").equalsIgnoreCase("parallel")) {
 	suite.setParallel(ParallelMode.TESTS);
-	suite.setThreadCount(2);}
+	suite.setThreadCount(3);}
 	for(int i=1;i<tc.length;i++){  
 		XmlTest test = new XmlTest(suite);
 		Map<String, String> param = new HashMap<>();

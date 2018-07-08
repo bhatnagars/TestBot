@@ -35,7 +35,7 @@ public class Harness extends ExtentTestNGReportBuilder {
 
 	private static Map<String, String> OR = new HashMap<>();
 	private static Map<String, Object> testdata = new HashMap<>();
-	private static Map<String, String> datamap = new HashMap<>();
+	private static Map<String, String> datamap = new HashMap<String, String>();
 	private static Map<String, String> Propmap = new HashMap<>();
 	private static ThreadLocal<WebDriver> threadedDriver = new ThreadLocal<WebDriver>();
 	private static ThreadLocal<AndroidDriver<MobileElement>> mobDriver = new ThreadLocal<AndroidDriver<MobileElement>>();
@@ -211,8 +211,8 @@ public class Harness extends ExtentTestNGReportBuilder {
 	}
 
 	@SuppressWarnings("unchecked")
-	public static Map<String, String> Readtestdata(String TestCase) {
-
+	public  Map<String, String> Readtestdata(String TestCase) {
+        boolean flg= false;
 		String strvalue = null;
 		String env[] = TestCase.split(";");
 		SetEnvdetails(env[1].trim(), env[2].trim());
@@ -228,6 +228,8 @@ public class Harness extends ExtentTestNGReportBuilder {
 				while (h.hasNext()) {
 					String key = h.next();
 					if (key.equalsIgnoreCase(TestDataRow.get().toString().trim())) {
+						System.out.println(TestCase+"===="+key);
+						flg=true;
 						Object value = kobj.get(key);
 						JSONArray tobj = (JSONArray) value;
 						Iterator<JSONObject> tdItr = tobj.iterator();
@@ -242,12 +244,14 @@ public class Harness extends ExtentTestNGReportBuilder {
 							}
 						}
 					}
+				}if(flg==false) {
+					datamap.clear();
 				}
 			}
 		} catch (Exception er) {
 			System.out.println(er.getMessage());
 		}
-		System.out.println(TestCase+"-"+datamap);
+		System.out.println("finaldata----"+TestCase+"----"+datamap);
 		return datamap;
 	}
 

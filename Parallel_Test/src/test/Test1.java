@@ -18,10 +18,10 @@ import harness.ExtentTestNGReportBuilder;
 
 public class Test1 extends ExtentTestNGReportBuilder {
 
-	private WebActions lib;
-	private WebDriver driver;
+	private  WebActions lib;
+	private static WebDriver driver;
 	private String url;
-	private String navigate;
+	private static ThreadLocal<String>  navigate = new ThreadLocal<String>();
 
 	@Parameters("param")
 	@BeforeTest
@@ -29,7 +29,7 @@ public class Test1 extends ExtentTestNGReportBuilder {
 		lib = new WebActions(param);
 		driver = lib.getbrowser(param);
 		url = lib.getglbdata("URL");
-		navigate= lib.getdata("Navigate");
+		navigate.set(lib.getdata("Navigate"));
 		createTest(param,"Test Description");
 	}
 
@@ -40,7 +40,7 @@ public class Test1 extends ExtentTestNGReportBuilder {
 			lib.Launch(url);
 			lib.verifytitle("PHPTRAVELS");
 			lib.smartsync(5);
-			lib.Navigate(navigate);
+			lib.Navigate(navigate.get());
 			lib.smartsync(5);
 			lib.entervalue("Login.UserName",lib.getglbdata("username"));
 			lib.entervalue("Login.Password",lib.getglbdata("password"));

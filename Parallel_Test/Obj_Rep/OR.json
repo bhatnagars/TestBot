@@ -1,7 +1,7 @@
 {
 	"Home": 
 	{
-		"Home.Myaccount": "xpath;//*[@class='navbar-collapse collapse']//a[contains(text(),'My Account')]",
+		"Home.Myaccount": "xpath;//*[@class='nav navbar-nav navbar-right']//a[contains(text(),'My Account')]",
 		"Home.Login": "xpath;//*[@class='navbar-collapse collapse']//a[contains(text(),'Login')]"
 	},
 
