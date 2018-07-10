@@ -12,6 +12,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -35,13 +38,20 @@ public class Harness extends ExtentTestNGReportBuilder {
 
 	private static Map<String, String> OR = new HashMap<>();
 	private static Map<String, Object> testdata = new HashMap<>();
-	private static Map<String, String> datamap = new HashMap<String, String>();
 	private static Map<String, String> Propmap = new HashMap<>();
 	private static ThreadLocal<WebDriver> threadedDriver = new ThreadLocal<WebDriver>();
 	private static ThreadLocal<AndroidDriver<MobileElement>> mobDriver = new ThreadLocal<AndroidDriver<MobileElement>>();
 	private static ThreadLocal<String> TestDataRow = new ThreadLocal<String>();
 	private static ThreadLocal<String> Browser = new ThreadLocal<String>();
 	private static ArrayList<String> list = new ArrayList<>();
+	private static ThreadLocal<Map<String, String>> datamap = new ThreadLocal<Map<String, String>>(){
+		@Override
+        protected Map initialValue()
+        {
+            return new HashMap<String, String>();
+        }
+	};
+
 
 	public void ReadTestConfig() {
 		try {
@@ -217,7 +227,6 @@ public class Harness extends ExtentTestNGReportBuilder {
 		String env[] = TestCase.split(";");
 		SetEnvdetails(env[1].trim(), env[2].trim());
 		try {
-			datamap.clear();
 			System.out.println(TestCase+"-"+TestDataRow.get().toString());
 			Object data1 = testdata.get(env[0].trim());
 			JSONArray mobj = (JSONArray) data1;
@@ -240,19 +249,20 @@ public class Harness extends ExtentTestNGReportBuilder {
 								String tdkey = ditr.next();
 								Object tdvalue = sobj.get(tdkey);
 								strvalue = tdvalue.toString();
-								datamap.put(tdkey, strvalue);
+								datamap.get().put(tdkey, strvalue);
 							}
 						}
 					}
-				}if(flg==false) {
-					datamap.clear();
-				}
+			}
+				//if(flg==false) {
+//					datamap.clear();
+//				}
 			}
 		} catch (Exception er) {
 			System.out.println(er.getMessage());
 		}
-		System.out.println("finaldata----"+TestCase+"----"+datamap);
-		return datamap;
+		System.out.println("finaldata----"+TestCase+"----"+datamap.get());
+		return datamap.get();
 	}
 
 	/** Placing the OR file data */

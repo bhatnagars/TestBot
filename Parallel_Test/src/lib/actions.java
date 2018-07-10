@@ -22,14 +22,13 @@ public class actions extends ExtentTestNGReportBuilder{
 	private  WebDriver driver;
 	private 	 AndroidDriver<WebElement> mobdriver;
 	private   Map<String, String> globalData, OR;
-	private   ThreadLocal<Map<String, String>> TestData = new ThreadLocal<Map<String, String>>() ;
+	private static  ThreadLocal<Map<String, String>> TestData = new ThreadLocal<Map<String, String>>() ;
 	private   Harness harness;
 	
 	public actions(String param){
 		harness = new Harness();
 		globalData = Harness.GetPropertyData();
 		OR = Harness.GetOR();
-		TestData.remove();
 		TestData.set(harness.Readtestdata(param));
 		if (TestData.get().isEmpty() ) {
 			System.out.println(param+"=======skipping=================");

@@ -57,7 +57,7 @@ public class WebActions extends ExtentTestNGReportBuilder {
 		WebElement element = driver.findElement(lib.Getlocator(strlocator));
 		JavascriptExecutor js = (JavascriptExecutor)	driver;
 		js.executeScript("arguments[0].click();", element);
-		pass("Clicked on ");
+		pass("Clicked on "+strlocator);
 		} catch (Exception e) {
 			fail("Failed to click");
 		}
