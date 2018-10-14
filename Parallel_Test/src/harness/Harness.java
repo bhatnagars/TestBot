@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -44,15 +45,11 @@ public class Harness extends ExtentTestNGReportBuilder {
 	private static ThreadLocal<String> TestDataRow = new ThreadLocal<String>();
 	private static ThreadLocal<String> Browser = new ThreadLocal<String>();
 	private static ArrayList<String> list = new ArrayList<>();
-	private static ThreadLocal<Map<String, String>> datamap = new ThreadLocal<Map<String, String>>(){
-		@Override
-        protected Map initialValue()
-        {
-            return new HashMap<String, String>();
-        }
-	};
-
-
+	private static ConcurrentHashMap<String, String> datamap = new ConcurrentHashMap<String, String>();
+	
+	
+	
+	
 	public void ReadTestConfig() {
 		try {
 			File ORFile = new File("Obj_Rep//OR.json");
@@ -249,20 +246,20 @@ public class Harness extends ExtentTestNGReportBuilder {
 								String tdkey = ditr.next();
 								Object tdvalue = sobj.get(tdkey);
 								strvalue = tdvalue.toString();
-								datamap.get().put(tdkey, strvalue);
+								datamap.put(tdkey, strvalue);
 							}
 						}
 					}
 			}
-				//if(flg==false) {
-//					datamap.clear();
-//				}
+				if(flg==false) {
+					datamap.clear();
+				}
 			}
 		} catch (Exception er) {
 			System.out.println(er.getMessage());
 		}
-		System.out.println("finaldata----"+TestCase+"----"+datamap.get());
-		return datamap.get();
+		System.out.println("finaldata----"+TestCase+"----"+datamap);
+		return datamap;
 	}
 
 	/** Placing the OR file data */

@@ -2,8 +2,11 @@ package harness;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.poi.ss.format.CellFormat;
 import org.apache.poi.ss.format.CellFormatter;
 import org.apache.poi.ss.format.CellTextFormatter;
@@ -13,6 +16,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.util.SystemOutLogger;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.support.ui.SystemClock;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.SkipException;
@@ -42,10 +46,11 @@ public class ExtentTestNGReportBuilder  {
 		harness = new Harness();
 	}
 	
-	public void CleanReport(){
+	public void CleanReport() throws IOException{
 		File file = new File("Report.html");
 		if(file.exists()){
-			file.delete();
+			File archivefile = new File("Archieved_Reports//Report.html");
+			FileUtils.copyFile(file, archivefile);
 		}
 	}
 	
